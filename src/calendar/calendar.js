@@ -1,5 +1,6 @@
 import React from 'react'
 import Day from './day.js'
+import './calendar.css'
 
 export default class Calendar extends React.Component {
   constructor(props) {

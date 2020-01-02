@@ -1,0 +1,18 @@
+.calendar {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.calendar .timeslot {
+  height: 75px;
+  border: 1px solid black;
+}
+
+.calendar .timeslot.white {
+  background-color: white;
+}
+
+.calendar .timeslot.green {
+  background-color: green;
+}

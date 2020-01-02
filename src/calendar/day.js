@@ -9,11 +9,19 @@ export default class Day extends React.Component {
     };
   }
 
+  onClickHandler(index) {
+    const slots = this.state.slots.slice();
+    slots[index] = this.state.slots[index] === 'white' ? 'green' : 'white';
+    this.setState({
+      slots: slots
+    });
+  }
+
   render() {
     return (
       <div className="day">
         <h4>{this.props.name}</h4>
-        {this.state.slots.map((slot) => <TimeSlot color={slot}/> )}
+        {this.state.slots.map((slot, index) => <TimeSlot color={slot} onClick={() => this.onClickHandler(index)}/> )}
       </div>
     );
   }
