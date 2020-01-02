@@ -1,13 +1,7 @@
 import React from 'react'
 
-export default class TimeSlot extends React.Component {
-  render() {
+export default function TimeSlot(props){
     return (
-      <div
-        className={`timeslot ${this.props.color}`}
-        onClick={this.props.onClick}>
-
-      </div>
+      <td/>
     )
-  }
 }
