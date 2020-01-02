@@ -1,7 +1,7 @@
 /* Cells that can be interacted with */
 .table-drag-select td.cell-enabled {
   color: #806E52;
-  background-color: #FBF1E8;
+  background-color: #f5edf0;
 }
 
 /* Cells that cannot be interacted with */
@@ -11,12 +11,12 @@
 
 /* Cells that have been selected */
 .table-drag-select td.cell-selected {
-  background-color: #FBD5D4;
+  background-color: #5d576b;
 }
 
 /* Cells that are in the process of being selected */
 .table-drag-select td.cell-being-selected {
-  background-color: #EACA96;
+  background-color: #5d576b;
 }
 
 /* Cells in first row */

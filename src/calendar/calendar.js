@@ -23,7 +23,7 @@ export default class Calendar extends React.Component {
 
     let cells = [];
     for (let i = 0; i < numRows + 1; i++) {
-      cells.push(Array(days.length+1).fill('false'));
+      cells.push(Array(days.length+1).fill(false));
     }
 
     this.state = {
