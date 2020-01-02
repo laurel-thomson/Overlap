@@ -1,6 +1,7 @@
 import React from 'react'
 import TableDragSelect from "react-table-drag-select";
 import "react-table-drag-select/style.css";
+import "./calendar.css"
 
 export default class Calendar extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export default class Calendar extends React.Component {
 
     let cells = [];
     for (let i = 0; i < 8; i++) {
-      cells.push(Array(7).fill(false));
+      cells.push(Array(8).fill(false));
     }
 
     this.state = {
@@ -21,6 +22,7 @@ export default class Calendar extends React.Component {
       <TableDragSelect value={this.state.cells} onChange={this.handleChange}>
         <tr>
           <td disabled />
+          <td disabled>Sunday</td>
           <td disabled>Monday</td>
           <td disabled>Tuesday</td>
           <td disabled>Wednesday</td>
@@ -35,7 +37,8 @@ export default class Calendar extends React.Component {
           <td />
           <td />
           <td />
-          <td>overtime</td>
+          <td />
+          <td />
         </tr>
         <tr>
           <td disabled>11:00</td>
@@ -44,7 +47,8 @@ export default class Calendar extends React.Component {
           <td />
           <td />
           <td />
-          <td>overtime</td>
+          <td />
+          <td />
         </tr>
         <tr>
           <td disabled>12:00</td>
@@ -53,7 +57,8 @@ export default class Calendar extends React.Component {
           <td />
           <td />
           <td />
-          <td>overtime</td>
+          <td />
+          <td />
         </tr>
         <tr>
           <td disabled>13:00</td>
@@ -62,7 +67,8 @@ export default class Calendar extends React.Component {
           <td />
           <td />
           <td />
-          <td>overtime</td>
+          <td />
+          <td />
         </tr>
         <tr>
           <td disabled>14:00</td>
@@ -71,7 +77,8 @@ export default class Calendar extends React.Component {
           <td />
           <td />
           <td />
-          <td>overtime</td>
+          <td />
+          <td />
         </tr>
         <tr>
           <td disabled>15:00</td>
@@ -80,7 +87,8 @@ export default class Calendar extends React.Component {
           <td />
           <td />
           <td />
-          <td>overtime</td>
+          <td />
+          <td />
         </tr>
         <tr>
           <td disabled>16:00</td>
@@ -89,7 +97,8 @@ export default class Calendar extends React.Component {
           <td />
           <td />
           <td />
-          <td>overtime</td>
+          <td />
+          <td />
         </tr>
       </TableDragSelect>
     </div>;
