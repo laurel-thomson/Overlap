@@ -103,5 +103,8 @@ export default class Calendar extends React.Component {
       </TableDragSelect>
     </div>;
 
-  handleChange = cells => this.setState({ cells });
+  handleChange = (cells) => {
+    this.setState({ cells });
+    //TODO: update the database with the cells that have changed
+  }
 }
