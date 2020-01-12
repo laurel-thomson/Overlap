@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from '../home/home.js';
+import Home from '../home/Home.js';
 import Calendar from '../calendar/calendar.js';
 
 export default function Routes() {

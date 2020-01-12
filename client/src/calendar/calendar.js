@@ -19,6 +19,7 @@ export default class Calendar extends React.Component {
 
   render = () =>
     <div>
+      <h1>{this.props.match.params.id}</h1>
       <TableDragSelect value={this.state.cells} onChange={this.handleChange}>
         <tr>
           <td disabled />
