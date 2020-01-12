@@ -1,14 +1,14 @@
 import React from 'react'
-import CreateSchedule from './CreateSchedule.js'
-import FindSchedule from './FindSchedule.js'
+import CreateScheduleLink from './CreateScheduleLink.js'
+import FindScheduleLink from './FindScheduleLink.js'
 
 export default class Home extends React.Component {
   render() {
     return (
       <div>
         <div className='intro'>welcome to overlap</div>
-        <CreateSchedule />
-        <FindSchedule />
+        <CreateScheduleLink />
+        <FindScheduleLink />
       </div>
     );
   }
