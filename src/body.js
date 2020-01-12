@@ -1,9 +1,15 @@
 import React from 'react'
+import { Router } from 'react-router-dom';
+import history from './services/history';
+import Home from './home/home.js'
+import Routes from './routes';
 
 export default class Body extends React.Component {
   render() {
     return (
-      <p>Body!</p>
+      <Router history={history}>
+        <Routes />
+      </Router>
     );
   }
 }
