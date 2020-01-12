@@ -1,7 +1,7 @@
 import React from 'react'
 import TableDragSelect from "react-table-drag-select";
 import "react-table-drag-select/style.css";
-import "./calendar.css"
+import "./Calendar.css"
 
 export default class Calendar extends React.Component {
   constructor(props) {
