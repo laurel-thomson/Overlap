@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class CreateScheduleLink extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class CreateScheduleLink extends React.Component {
         <div>
          <label>
            Schedule Name:
-           <input type="text" scheduleName={this.state.scheduleName} onChange={this.handleChange} />
+           <input type="text" value={this.state.scheduleName} onChange={this.handleChange} />
          </label>
 
          <Link to={{pathname: '/create', scheduleName: `${this.state.scheduleName}` }}>Create Schedule!</Link>
