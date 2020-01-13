@@ -1,15 +1,17 @@
 import React from 'react'
 import TopNav from './nav/TopNav.js'
-import Body from './Body.js'
+import { Router } from 'react-router-dom';
+import history from './services/history';
+import Routes from './routes';
 import "./Page.css"
 
 export default class Page extends React.Component {
   render() {
     return (
-      <div>
+      <Router history={history}>
         <TopNav />
-        <Body />
-      </div>
+        <Routes />
+      </Router>
     );
   }
 }
