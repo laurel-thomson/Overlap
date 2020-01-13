@@ -1,5 +1,5 @@
 import React from 'react'
-import TopNav from './TopNav.js'
+import TopNav from './nav/TopNav.js'
 import Body from './Body.js'
 import "./Page.css"
 
