@@ -13,10 +13,66 @@
   font-size: 17px;
 }
 
+.homelink {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 15px;
+  padding: 15px 10px;
+  background-color: var(--beige);
+}
+
+.homelink h4 {
+  font-size: 18px;
+  letter-spacing: 1.2px;
+}
+
+.homelink .form {
+  display: flex;
+}
+
+.homelink .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  z-index: 2;
+}
+
+.homelink.create .icon {
+  background-color: var(--red);
+}
+
+.homelink.find .icon {
+  background-color: var(--blue);
+}
+
+.homelink input {
+  margin-bottom: 10px;
+  margin-left: -10px;
+  padding-left: 20px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--darkgray);
+}
+
+.homelink.create .arrow path {
+  fill: var(--red);
+}
+
+.homelink.find .arrow path {
+  fill: var(--blue);
+}
+
 @media screen and (min-width: 640px) {
   .intro p {
     font-size: 35px;
     padding-top: 25px;
     padding-bottom: 25px;
+  }
+
+  .homelink h4 {
+    font-size: 20px;
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Home.css';
 
 export default class CreateScheduleLink extends React.Component {
@@ -16,14 +17,14 @@ export default class CreateScheduleLink extends React.Component {
 
   render() {
     return (
-      <div className='homelink create'>
+      <div className={`homelink ${this.props.task}`}>
+        <h4>{this.props.task} a schedule</h4>
         <div className='form'>
-         <label>
-           {this.props.label}
-           <input type="text" value={this.state.inputValue} onChange={this.handleChange} />
-         </label>
-
-         <Link to={{pathname: '/create', inputValue: `${this.state.inputValue}` }}>{this.props.placeholder}</Link>
+          <div className='icon'>
+           <FontAwesomeIcon icon={this.props.icon} color='white'/>
+          </div>
+          <input type='text' value={this.state.inputValue} placeholder={this.props.placeholder} onChange={this.handleChange} />
+          <Link to={{pathname: '/create', inputValue: `${this.state.inputValue}` }}><FontAwesomeIcon icon='angle-right' className='arrow'/></Link>
         </div>
       </div>
     );
