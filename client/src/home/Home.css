@@ -2,35 +2,36 @@
   background-color: var(--red);
   border-bottom: 3px solid var(--darkgray);
   margin-bottom: 15px;
+  padding: 15px;
 }
 
 .intro p {
-  width: 100%;
-  max-width: 1200px;
   padding: 15px 10px;
   margin: 0 auto;
   color: white;
-  font-size: 17px;
+  font-size: 24px;
 }
 
 .homelink {
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto 15px;
-  padding: 15px 10px;
+  padding: 15px;
   background-color: var(--beige);
 }
 
 .homelink h4 {
-  font-size: 18px;
+  font-size: 24px;
   letter-spacing: 1.2px;
 }
 
 .homelink .form {
-  display: flex;
+  position: relative;
 }
 
 .homelink .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,12 +50,28 @@
 }
 
 .homelink input {
-  margin-bottom: 10px;
-  margin-left: -10px;
+  margin-bottom: 20px;
+  margin-left: 45px;
   padding-left: 20px;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid var(--darkgray);
+  font-size: 20px;
+  width: calc(100% - 80px);
+}
+
+.homelink input::placeholder {
+  font-family: 'Source Sans Pro';
+  font-size: 20px;
+}
+
+.homelink .circleIcon {
+  font-size: 20px;
+}
+
+.homelink .arrow {
+  font-size: 30px;
+  padding: 15px;
 }
 
 .homelink.create .arrow path {
@@ -65,14 +82,60 @@
   fill: var(--blue);
 }
 
+.homelink .form a {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+}
+
 @media screen and (min-width: 640px) {
   .intro p {
-    font-size: 35px;
+    max-width: 1200px;
+    font-size: 45px;
     padding-top: 25px;
     padding-bottom: 25px;
   }
 
+  .homelink {
+    padding: 25px;
+  }
+
   .homelink h4 {
-    font-size: 20px;
+    font-size: 30px;
+  }
+
+  .homelink .form {
+    width: 50%;
+  }
+
+  .homelink .icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .homelink .circleIcon {
+    font-size: 25px;
+  }
+
+  .homelink input {
+    font-size: 30px;
+    padding-left: 30px;
+    padding-bottom: 10px;
+  }
+
+  .homelink input::placeholder {
+    font-size: 30px;
+  }
+
+  .homelink .arrow {
+    font-size: 40px;
+    padding: 15px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .homelink {
+    padding-left: 80px;
+    padding-bottom: 60px;
   }
 }
