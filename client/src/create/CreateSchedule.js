@@ -28,10 +28,10 @@ class CreateSchedule extends React.Component {
     let component;
     switch(this.state.currentComponent) {
       case 'days':
-        component = <SelectDays handleClick={this.moveToHours} />
+        component = <SelectDays handleClick={this.moveToHours} eventName={this.props.location.inputValue}/>
         break;
       case 'hours':
-        component = <SelectHours handleClick={this.createSchedule}/>
+        component = <SelectHours handleClick={this.createSchedule} eventName={this.props.location.inputValue}/>
         break
     }
     return component;
@@ -52,7 +52,6 @@ class CreateSchedule extends React.Component {
   render() {
     return(
       <div class='create-schedule'>
-        <p>{this.props.location.inputValue}</p>
         {this.getComponent()}
       </div>
     );
