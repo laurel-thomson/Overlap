@@ -6,10 +6,22 @@ import SelectHours from './SelectHours.js';
 class CreateSchedule extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       currentComponent : 'days'
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.beforeunload.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.beforeunload.bind(this));
+  }
+
+  beforeunload(e) {
+    e.preventDefault();
+    e.returnValue = true;
   }
 
   getComponent = () => {
@@ -34,6 +46,8 @@ class CreateSchedule extends React.Component {
   createSchedule = (name) => {
     this.props.history.push(`/${name}`);
   }
+
+
 
   render() {
     return(
