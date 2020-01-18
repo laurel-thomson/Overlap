@@ -1,8 +1,9 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
 import SelectDays from './SelectDays.js';
 import SelectHours from './SelectHours.js';
 
-export default class CreateSchedule extends React.Component {
+class CreateSchedule extends React.Component {
   constructor(props) {
     super(props);
 
@@ -15,19 +16,23 @@ export default class CreateSchedule extends React.Component {
     let component;
     switch(this.state.currentComponent) {
       case 'days':
-        component = <SelectDays />
+        component = <SelectDays handleClick={this.moveToHours} />
         break;
       case 'hours':
-        component = <SelectHours />
+        component = <SelectHours handleClick={this.createSchedule}/>
         break
     }
     return component;
   }
 
-  handleClick = () => {
+  moveToHours = () => {
     this.setState({
       currentComponent : 'hours'
     });
+  }
+
+  createSchedule = (name) => {
+    this.props.history.push(`/${name}`);
   }
 
   render() {
@@ -35,8 +40,9 @@ export default class CreateSchedule extends React.Component {
       <div class='create-schedule'>
         <p>{this.props.location.inputValue}</p>
         {this.getComponent()}
-        <button onClick={this.handleClick}>Next</button>
       </div>
     );
   }
 }
+
+export default withRouter(CreateSchedule);

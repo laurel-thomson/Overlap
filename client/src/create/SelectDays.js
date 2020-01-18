@@ -3,7 +3,10 @@ import React from 'react';
 export default class SelectDays extends React.Component {
   render() {
     return (
-      <p>Select Days</p>
+      <div>
+        <p>Select Days</p>
+        <button onClick={this.props.handleClick}>NEXT</button>
+      </div>
     );
   }
 }
