@@ -47,8 +47,6 @@ class CreateSchedule extends React.Component {
     this.props.history.push(`/${name}`);
   }
 
-
-
   render() {
     return(
       <div class='create-schedule'>

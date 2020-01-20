@@ -2,9 +2,11 @@
 
 :root {
   --red: #ff5757;
+  --lightred: #e57e7e;
   --darkgray: #545454;
   --beige: #f7d29a;
   --blue: #0f9ec4;
+  --yellow: #ffbd59;
 }
 
 body {
