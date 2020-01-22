@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import CodeCopy from './CodeCopy.js';
 import TableDragSelect from "react-table-drag-select";
 import "react-table-drag-select/style.css";
 import "./Calendar.css"
@@ -18,8 +19,12 @@ export default class Calendar extends React.Component {
   }
 
   render = () =>
-    <div>
-      <h1>{this.props.match.params.id}</h1>
+    <div className='calendar'>
+      <div className='header'>
+        <h1>Insert Event Name Here</h1>
+        <CodeCopy label='Access Code' code={this.props.match.params.id}/>
+        <CodeCopy label='URL' code={`overlap.com/${this.props.match.params.id}`}/>
+      </div>
       <TableDragSelect value={this.state.cells} onChange={this.handleChange}>
         <tr>
           <td disabled />
@@ -105,7 +110,7 @@ export default class Calendar extends React.Component {
     </div>;
 
   handleChange = (cells) => {
-    this.setState({ cells });
+    this.setState({ cells: cells })
     //TODO: update the database with the cells that have changed
   }
 }

@@ -1,0 +1,37 @@
+.code-copy {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.code-copy .label {
+  width: 30%;
+  white-space: nowrap;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: right;
+  color: var(--darkgray);
+  margin-right: 10px;
+}
+
+.code-copy .clipboard-code {
+  text-align: left;
+  background-color: var(--lightgray);
+  color: var(--darkgray);
+  font-family: 'Source Sans Pro', sans-serif;
+  border-radius: 2px;
+  white-space: nowrap;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.code-copy .clipboard {
+  margin-left: 5px;
+}

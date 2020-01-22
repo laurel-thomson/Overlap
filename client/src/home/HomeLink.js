@@ -24,7 +24,9 @@ export default class CreateScheduleLink extends React.Component {
            <FontAwesomeIcon icon={this.props.icon} className='circleIcon' color='white'/>
           </div>
           <input type='text' value={this.state.inputValue} placeholder={this.props.placeholder} onChange={this.handleChange} />
-          <Link to={{pathname: '/create', inputValue: `${this.state.inputValue}` }}><FontAwesomeIcon icon='angle-right' className='arrow'/></Link>
+          <Link to={{pathname: '/create', inputValue: `${this.state.inputValue}` }}>
+            <FontAwesomeIcon icon='angle-right' className='arrow'/>
+          </Link>
         </div>
       </div>
     );

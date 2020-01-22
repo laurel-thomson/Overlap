@@ -1,3 +1,15 @@
+.calendar .header {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar h1 {
+  align-self:  center;
+  font-size: 22px;
+  color: var(--darkgray);
+  font-weight: normal;
+}
+
 /* Cells that can be interacted with */
 .table-drag-select td.cell-enabled {
   color: #806E52;
