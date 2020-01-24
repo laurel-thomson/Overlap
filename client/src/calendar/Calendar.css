@@ -9,3 +9,44 @@
   color: var(--darkgray);
   font-weight: normal;
 }
+
+.calendar .tabs {
+  display: flex;
+}
+
+.calendar .tabs button {
+  flex-basis: 50%;
+  padding: 8px;
+  background-color: var(--lightred);
+  color: var(--darkred);
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  border-bottom: 5px solid var(--red);
+  cursor: pointer;
+}
+
+.calendar .tabs button.selected {
+  background-color: var(--red);
+  color: white;
+}
+
+@media screen and (min-width: 640px) {
+  .calendar .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .calendar .header h1 {
+    width: 50%;
+    text-align: center;
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .calendar .tabs button {
+    font-size: 20px;
+  }
+}
