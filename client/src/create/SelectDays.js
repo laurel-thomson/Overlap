@@ -33,14 +33,18 @@ export default class SelectDays extends React.Component {
       <div className='select days'>
         <p className='select-for'>select possible days for</p>
         <p className='event-name'>{this.props.eventName}</p>
-        <ul className='dayOptions'>
-          <li className={ this.state.dayOption === 'specific' ? 'selected' : '' }
-            onClick={() => this.switchDayOption('specific')}>Specific Days</li>
-          <li className={ this.state.dayOption === 'week' ? 'selected' : '' }
-          onClick={() => this.switchDayOption('week')}>Days of the Week</li>
-        </ul>
+        <div className='options'>
+          <button className={ this.state.dayOption === 'specific' ? 'selected' : '' }
+            onClick={() => this.switchDayOption('specific')}>
+            Specific Days
+          </button>
+          <button className={ this.state.dayOption === 'week' ? 'selected' : '' }
+          onClick={() => this.switchDayOption('week')}>
+            Days of the Week
+          </button>
+        </div>
         {this.getComponent()}
-        <button onClick={this.props.handleClick}>NEXT <FontAwesomeIcon icon='angle-right' className='arrow'/></button>
+        <button className='done' onClick={this.props.handleClick}>NEXT <FontAwesomeIcon icon='angle-right' className='arrow'/></button>
       </div>
     );
   }

@@ -24,7 +24,7 @@ export default class SelectHours extends React.Component {
           </select>
         </div>
 
-        <button onClick={() => this.props.handleClick('newaccesscode')}>DONE</button>
+        <button className='done' onClick={() => this.props.handleClick('newaccesscode')}>DONE</button>
       </div>
     );
   }

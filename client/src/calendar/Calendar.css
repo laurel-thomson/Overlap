@@ -9,37 +9,3 @@
   color: var(--darkgray);
   font-weight: normal;
 }
-
-/* Cells that can be interacted with */
-.table-drag-select td.cell-enabled {
-  color: #806E52;
-  background-color: #f5edf0;
-}
-
-/* Cells that cannot be interacted with */
-.table-drag-select td.cell-disabled {
-  /* Put yer css here */
-}
-
-/* Cells that have been selected */
-.table-drag-select td.cell-selected {
-  background-color: #5d576b;
-}
-
-/* Cells that are in the process of being selected */
-.table-drag-select td.cell-being-selected {
-  background-color: #5d576b;
-}
-
-/* Cells in first row */
-.table-drag-select tr:first-child td {
-  /* Remove empty space at top of table */
-  border-top: 0;
-  line-height: 1rem;
-}
-
-/* Cells in first column */
-.table-drag-select td:first-child {
-  /* Consume less whitespace */
-  width: 3rem;
-}

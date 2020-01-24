@@ -1,22 +1,33 @@
 import React from 'react';
+import Day from './Day.js';
 import CodeCopy from './CodeCopy.js';
-import TableDragSelect from "react-table-drag-select";
-import "react-table-drag-select/style.css";
+import MySchedule from './MySchedule.js';
+import OverlapSchedule from './OverlapSchedule.js';
 import "./Calendar.css"
 
 export default class Calendar extends React.Component {
   constructor(props) {
     super(props);
 
-    let cells = [];
-    for (let i = 0; i < 8; i++) {
-      cells.push(Array(8).fill(false));
-    }
-
     this.state = {
-      cells: cells
-    };
+      tabOption : 'mine'
+    }
   }
+
+  getComponent = () => {
+    switch (this.state.tabOption) {
+      case 'mine':
+        return <MySchedule/>
+      case 'overlap':
+        return <OverlapSchedule/>
+    }
+  };
+
+  switchTab = (tab) => {
+    this.setState({
+      tabOption : tab
+    });
+  };
 
   render = () =>
     <div className='calendar'>
@@ -25,92 +36,17 @@ export default class Calendar extends React.Component {
         <CodeCopy label='Access Code' code={this.props.match.params.id}/>
         <CodeCopy label='URL' code={`overlap.com/${this.props.match.params.id}`}/>
       </div>
-      <TableDragSelect value={this.state.cells} onChange={this.handleChange}>
-        <tr>
-          <td disabled />
-          <td disabled>Sunday</td>
-          <td disabled>Monday</td>
-          <td disabled>Tuesday</td>
-          <td disabled>Wednesday</td>
-          <td disabled>Thursday</td>
-          <td disabled>Friday</td>
-          <td disabled>Saturday</td>
-        </tr>
-        <tr>
-          <td disabled>10:00</td>
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-        </tr>
-        <tr>
-          <td disabled>11:00</td>
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-        </tr>
-        <tr>
-          <td disabled>12:00</td>
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-        </tr>
-        <tr>
-          <td disabled>13:00</td>
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-        </tr>
-        <tr>
-          <td disabled>14:00</td>
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-        </tr>
-        <tr>
-          <td disabled>15:00</td>
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-        </tr>
-        <tr>
-          <td disabled>16:00</td>
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-          <td />
-        </tr>
-      </TableDragSelect>
+      <div className='tabs'>
+        <button className={ this.state.tabOption === 'mine' ? 'selected' : '' }
+          onClick={() => this.switchTab('mine')}>
+          My Schedule
+        </button>
+        <button className={ this.state.tabOption === 'overlap' ? 'selected' : '' }
+          onClick={() => this.switchTab('overlap')}>
+          Overlap
+        </button>
+      </div>
+      {this.getComponent()}
     </div>;
 
-  handleChange = (cells) => {
-    this.setState({ cells: cells })
-    //TODO: update the database with the cells that have changed
-  }
 }
