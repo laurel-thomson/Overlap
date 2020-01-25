@@ -1,6 +1,6 @@
 import React from 'react';
-import Day from './Day.js';
-import CodeCopy from './CodeCopy.js';
+import Day from './schedule/Day.js';
+import CodeCopy from './code-copy/CodeCopy.js';
 import MySchedule from './MySchedule.js';
 import OverlapSchedule from './OverlapSchedule.js';
 import "./Calendar.css"
@@ -10,14 +10,21 @@ export default class Calendar extends React.Component {
     super(props);
 
     this.state = {
-      tabOption : 'mine'
+      tabOption : 'mine',
+      currentUser : ''
     }
+  }
+
+  selectUser = (user) => {
+    this.setState({
+      currentUser : user
+    })
   }
 
   getComponent = () => {
     switch (this.state.tabOption) {
       case 'mine':
-        return <MySchedule/>
+        return <MySchedule currentUser={this.state.currentUser} selectUser={this.selectUser}/>
       case 'overlap':
         return <OverlapSchedule/>
     }

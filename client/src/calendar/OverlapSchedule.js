@@ -1,5 +1,5 @@
 import React from 'react';
-import Day from './Day.js'
+import Day from './schedule/Day.js'
 
 export default class OverlapSchedule extends React.Component {
   render() {

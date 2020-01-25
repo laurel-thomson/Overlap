@@ -1,14 +1,21 @@
 import React from 'react';
-import Day from './Day.js'
+import Day from './schedule/Day.js'
+import SelectUser from './select-user/SelectUser.js';
+import SelectSchedule from './SelectSchedule.js';
 
 export default class MySchedule extends React.Component {
+  getComponent = () => {
+    if (this.props.currentUser === '') {
+      return <SelectUser selectUser={this.props.selectUser}/>;
+    } else {
+      return <SelectSchedule />;
+    }
+  }
+
   render() {
     return (
       <div className='schedule mine'>
-        <p>my schedule</p>
-        <Day name='Sunday' />
-        <Day name='Monday' />
-        <Day name='Tuesday' />
+        {this.getComponent()}
       </div>
     );
   }
