@@ -16,6 +16,8 @@ export default class CreateScheduleLink extends React.Component {
   }
 
   render() {
+    const name = this.props.task === 'create' ? '/create' : `${this.state.inputValue}`;
+    console.log(name);
     return (
       <div className={`homelink ${this.props.task}`}>
         <h4>{this.props.task} a schedule</h4>
@@ -24,7 +26,7 @@ export default class CreateScheduleLink extends React.Component {
            <FontAwesomeIcon icon={this.props.icon} className='circleIcon' color='white'/>
           </div>
           <input type='text' value={this.state.inputValue} placeholder={this.props.placeholder} onChange={this.handleChange} />
-          <Link to={{pathname: '/create', inputValue: `${this.state.inputValue}` }}>
+          <Link to={{pathname: name, inputValue: `${this.state.inputValue}` }}>
             <FontAwesomeIcon icon='angle-right' className='arrow'/>
           </Link>
         </div>
