@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './UserOption.css';
 
 export default class UserOption extends React.Component {
   constructor(props) {
@@ -14,8 +16,12 @@ export default class UserOption extends React.Component {
     });
   };
 
+  isNewUser = () => {
+    return this.props.user === '';
+  }
+
   getNameElement = () => {
-    if (this.props.user === '') {
+    if (this.isNewUser()) {
       return (
         <div className='new-name'>
           <input type='text' placeholder='Enter Name' value={this.state.name} onChange={this.handleChange}/>
@@ -26,10 +32,21 @@ export default class UserOption extends React.Component {
     }
   }
 
-  render() {
+  getIcon = () => {
+    if (this.isNewUser()) {
+      return 'user-plus';
+    } else {
+      return 'user';
+    }
+  }
 
+  render() {
     return (
-      <button className='userOption' onClick={() => this.props.selectUser(this.state.name)}>
+      <button className={this.isNewUser() ? 'user-option new' : 'user-option existing'} 
+        onClick={() => this.props.selectUser(this.state.name)}>
+        <div className='icon'>
+         <FontAwesomeIcon icon={this.getIcon()} className='circleIcon' color='white'/>
+        </div>
         {this.getNameElement()}
       </button>
     );

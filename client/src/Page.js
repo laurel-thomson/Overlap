@@ -5,12 +5,12 @@ import history from './services/history';
 import Routes from './routes';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faAngleRight, faKey, faPlus, faClipboard } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faKey, faPlus, faClipboard, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import "./Page.css";
 
 export default class Page extends React.Component {
   render() {
-    library.add(fab, faAngleRight, faKey, faPlus, faClipboard);
+    library.add(fab, faAngleRight, faKey, faPlus, faClipboard, faUser, faUserPlus);
 
     return (
       <Router history={history}>
