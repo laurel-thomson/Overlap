@@ -35,6 +35,10 @@
     letter-spacing: 1px;
   }
 
+  .select-user .options {
+    margin-bottom: 50px;
+  }
+
   .select-user button.done {
     position: relative;
   }

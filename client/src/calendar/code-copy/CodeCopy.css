@@ -43,4 +43,8 @@
     margin-bottom: 0;
     margin-right: 25px;
   }
+
+  .code-copy .label {
+    width: auto;
+  }
 }
