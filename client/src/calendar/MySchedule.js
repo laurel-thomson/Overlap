@@ -6,7 +6,7 @@ import SelectSchedule from './SelectSchedule.js';
 export default class MySchedule extends React.Component {
   getComponent = () => {
     if (this.props.currentUser === '') {
-      return <SelectUser selectUser={this.props.selectUser}/>;
+      return <SelectUser handleSubmit={this.props.handleSubmit}/>;
     } else {
       return <SelectSchedule />;
     }
