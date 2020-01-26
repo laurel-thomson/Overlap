@@ -14,6 +14,7 @@ export default class UserOption extends React.Component {
     this.setState({
       name : event.target.value
     });
+    this.props.selectUser(event.target.value, this.props.index);
   };
 
   isNewUser = () => {
@@ -42,8 +43,11 @@ export default class UserOption extends React.Component {
 
   render() {
     return (
-      <button className={this.isNewUser() ? 'user-option new' : 'user-option existing'} 
-        onClick={() => this.props.selectUser(this.state.name)}>
+      <button
+        className={ `user-option
+          ${this.isNewUser() ? 'new' : 'existing'}
+          ${this.props.selected ? 'selected' : ''}` }
+        onClick={() => this.props.selectUser(this.state.name, this.props.index)}>
         <div className='icon'>
          <FontAwesomeIcon icon={this.getIcon()} className='circleIcon' color='white'/>
         </div>

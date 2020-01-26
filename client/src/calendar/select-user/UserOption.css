@@ -5,14 +5,19 @@
   background-color: transparent;
   border: none;
   width: 100%;
-  margin-bottom: 30px;
   text-align: left;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 15px 20px;
+  cursor: pointer;
 }
 
 .user-option.existing {
-  padding-left: 25px;
+  padding: 10px 20px 10px 35px;
+}
+
+.user-option.selected {
+  background-color: var(--lightred);
+  color: white;
+  font-weight: bold;
 }
 
 .user-option .icon {
@@ -41,16 +46,20 @@
   font-size: 16px;
 }
 
-.user-option:nth-of-type(3n+1) .icon {
-  background-color: var(--red);
+.user-option:nth-of-type(4n+1) .icon {
+  background-color: var(--blue);
 }
 
-.user-option:nth-of-type(3n+2) .icon {
+.user-option:nth-of-type(4n+2) .icon {
   background-color: var(--darkgray);
 }
 
-.user-option:nth-of-type(3n+0) .icon {
+.user-option:nth-of-type(4n+3) .icon {
   background-color: var(--yellow);
+}
+
+.user-option:nth-of-type(4n+0) .icon {
+  background-color: var(--red);
 }
 
 .user-option input {
@@ -60,6 +69,11 @@
   border: none;
   border-bottom: 1px solid var(--darkgray);
   font-size: 20px;
+}
+
+.user-option.selected input {
+  color: white;
+  font-weight: bold;
 }
 
 .user-option input::placeholder {
