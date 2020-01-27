@@ -1,5 +1,4 @@
 import React from 'react';
-import Day from './schedule/Day.js'
 import SelectUser from './select-user/SelectUser.js';
 import SelectSchedule from './schedule/SelectSchedule.js';
 

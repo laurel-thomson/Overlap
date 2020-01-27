@@ -1,5 +1,4 @@
 import React from 'react';
-import Day from './schedule/Day.js';
 import CodeCopy from './code-copy/CodeCopy.js';
 import MySchedule from './MySchedule.js';
 import OverlapSchedule from './schedule/OverlapSchedule.js';

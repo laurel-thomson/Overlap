@@ -1,5 +1,5 @@
 import React from 'react';
-import Day from './Day.js';
+import SelectableDay from './SelectableDay.js';
 import './Schedule.css';
 
 export default class SelectSchedule extends React.Component {
@@ -7,7 +7,7 @@ export default class SelectSchedule extends React.Component {
     const days = ['Sunday','Monday','Tuesday'];
     return (
       <div className='schedule mine'>
-        {days.map((day, index) => <Day key={index} name={day} />)}
+        {days.map((day, index) => <SelectableDay key={index} name={day} />)}
       </div>
     );
   }

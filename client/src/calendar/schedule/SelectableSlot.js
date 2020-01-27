@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Schedule.css';
 
-export default class TimeSlot extends React.Component {
+export default class SelectableSlot extends React.Component {
   getButtonIcon = () => this.props.selected ? 'check' : 'times';
 
   render() {

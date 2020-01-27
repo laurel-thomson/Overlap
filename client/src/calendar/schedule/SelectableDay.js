@@ -1,8 +1,8 @@
 import React from 'react';
-import TimeSlot from './TimeSlot.js';
+import SelectableSlot from './SelectableSlot.js';
 import './Schedule.css';
 
-export default class Day extends React.Component {
+export default class SelectableDay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,12 +29,12 @@ export default class Day extends React.Component {
 
   render() {
     return (
-      <div className='day'>
+      <div className='day selectable'>
         <h3>{this.props.name}</h3>
         <hr className='header-line' />
         <div className='time-slots'>
           {this.state.slots.map((slot, index) =>
-            <TimeSlot
+            <SelectableSlot
               key={index}
               name={slot.name}
               selected={slot.selected}
