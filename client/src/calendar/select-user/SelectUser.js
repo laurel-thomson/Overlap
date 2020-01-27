@@ -29,7 +29,13 @@ export default class SelectUser extends React.Component {
         <h4>Identify yourself to continue</h4>
         <div className='options'>
           {users.map((user, index) =>
-            <UserOption user={user} index={index} selectUser={this.selectUser} selected={index === this.state.selectedIndex}/>
+            <UserOption
+              user={user}
+              key={index}
+              index={index}
+              selectUser={this.selectUser}
+              selected={index === this.state.selectedIndex}
+            />
           )}
         </div>
         <button className={this.state.selectedUser === '' ? 'done' : 'done active'} onClick={this.handleClick}> SUBMIT</button>
