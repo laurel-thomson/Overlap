@@ -7,7 +7,7 @@ export default class SelectableSlot extends React.Component {
 
   render() {
     return (
-      <div className='timeslot'>
+      <div className='timeslot selectable'>
         <p>{this.props.name}</p>
         <button className={this.props.selected ? 'selected' : 'unselected'} onClick={this.props.handleClick}>
           <FontAwesomeIcon icon={this.getButtonIcon()} className='buttonIcon' color='white'/>

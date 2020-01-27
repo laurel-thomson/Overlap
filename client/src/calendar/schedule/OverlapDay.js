@@ -7,10 +7,13 @@ export default class OverlapDay extends React.Component {
     this.state = {
       slots : [
          { name : '08:30', overlap : 0 },
-         { name : '09:00', overlap : 2 },
-         { name : '09:30', overlap : 1 },
+         { name : '09:00', overlap : 5 },
+         { name : '09:30', overlap : 7 },
+         { name : '10:00', overlap : 10 },
+         { name : '10:30', overlap : 3 },
+         { name : '11:00', overlap : 4 },
       ],
-      totalUsers: 3
+      totalUsers: 10
     }
   }
 

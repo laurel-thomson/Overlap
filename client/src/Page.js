@@ -7,7 +7,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faAngleRight, faKey, faPlus, faClipboard, faUser, faUserPlus, faCheck, faTimes }
   from '@fortawesome/free-solid-svg-icons';
-import "./Page.css";
 
 export default class Page extends React.Component {
   render() {

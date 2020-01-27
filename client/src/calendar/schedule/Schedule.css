@@ -42,6 +42,12 @@
   background-color: lightgray;
 }
 
+.day .timeslot.overlap button {
+  color: black;
+  font-weight: bolder;
+  font-size: 16px;
+}
+
 @media screen and (min-width: 640px) {
   .schedule {
     display: flex;

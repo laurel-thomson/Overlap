@@ -3,10 +3,11 @@ import './Schedule.css';
 
 export default class OverlapSlot extends React.Component {
   render() {
+    let opacity = (this.props.overlap + 1) / (this.props.totalUsers + 1);
     return (
-      <div className='timeslot'>
+      <div className='timeslot overlap'>
         <p>{this.props.name}</p>
-        <button>
+        <button style={{'background-color' : `rgba(15, 158, 196, ${opacity})`}}>
           {this.props.overlap} / {this.props.totalUsers}
         </button>
       </div>
