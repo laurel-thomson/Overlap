@@ -49,7 +49,7 @@ class CreateSchedule extends React.Component {
 
   render() {
     return(
-      <div class='create-schedule'>
+      <div className='create-schedule'>
         {this.getComponent()}
       </div>
     );
