@@ -1,56 +1,92 @@
-var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+var firebase = require('firebase');
+var config = {
+  apiKey: "AIzaSyCWC-hawqPxalkgb1MFye2Z6_3NFbO_gXU",
+  authDomain: "overlap-cae10.firebaseapp.com",
+  databaseURL: "https://overlap-cae10.firebaseio.com",
+  projectId: "overlap-cae10",
+  storageBucket: "overlap-cae10.appspot.com",
+  messagingSenderId: "625223917957",
+  appId: "1:625223917957:web:641fbb30055ce17349e4ec",
+  measurementId: "G-8YS7YHQW9K"
+};
+firebase.initializeApp(config);
+//Fetch instances
+app.get('/', function (req, res) {
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+	console.log("HTTP Get Request");
+	var userReference = firebase.database().ref("/Users/");
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+	//Attach an asynchronous callback to read the data
+	userReference.on("value",
+			  function(snapshot) {
+					console.log(snapshot.val());
+					res.json(snapshot.val());
+					userReference.off("value");
+					},
+			  function (errorObject) {
+					console.log("The read failed: " + errorObject.code);
+					res.send("The read failed: " + errorObject.code);
+			 });
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+//Create new instance
+app.put('/', function (req, res) {
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	console.log("HTTP Put Request");
+
+	var userName = req.body.UserName;
+	var name = req.body.Name;
+	var age = req.body.Age;
+
+	var referencePath = '/Users/'+userName+'/';
+	var userReference = firebase.database().ref(referencePath);
+	userReference.set({Name: name, Age: age},
+				 function(error) {
+					if (error) {
+						res.send("Data could not be saved." + error);
+					}
+					else {
+						res.send("Data saved successfully.");
+					}
+			});
 });
 
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host : 'localhost',
-    user : 'root',
-    password : 'password',
-    database : 'overlap-db'
+//Update existing instance
+app.post('/', function (req, res) {
+
+	console.log("HTTP POST Request");
+
+	var userName = req.body.UserName;
+	var name = req.body.Name;
+	var age = req.body.Age;
+
+	var referencePath = '/Users/'+userName+'/';
+	var userReference = firebase.database().ref(referencePath);
+	userReference.update({Name: name, Age: age},
+				 function(error) {
+					if (error) {
+						res.send("Data could not be updated." + error);
+					}
+					else {
+						res.send("Data updated successfully.");
+					}
+			    });
 });
 
-connection.connect(function(err) {
-  if (err) {
-    console.log(err + '++++++++++++++//////////');
-  }
-  console.log('connection********');
+//Delete an instance
+app.delete('/', function (req, res) {
+
+   console.log("HTTP DELETE Request");
+   //todo
 });
 
-module.exports = app;
+var server = app.listen(8080, function () {
+
+   var host = server.address().address;
+   var port = server.address().port;
+
+   console.log("Example app listening at http://%s:%s", host, port);
+});
