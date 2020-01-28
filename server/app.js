@@ -1,5 +1,9 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 var firebase = require('firebase');
 var config = {
@@ -13,14 +17,12 @@ var config = {
   measurementId: "G-8YS7YHQW9K"
 };
 firebase.initializeApp(config);
-//Fetch instances
-app.get('/', function (req, res) {
 
-	console.log("HTTP Get Request");
-	var userReference = firebase.database().ref("/Users/");
+//get a schedule
+app.get('/:accessCode', function (req, res) {
+	var scheduleRef = firebase.database().ref(`/schedules/${req.params.accessCode}`);
 
-	//Attach an asynchronous callback to read the data
-	userReference.on("value",
+	scheduleRef.on("value",
 			  function(snapshot) {
 					console.log(snapshot.val());
 					res.json(snapshot.val());
@@ -32,18 +34,29 @@ app.get('/', function (req, res) {
 			 });
 });
 
-//Create new instance
-app.put('/', function (req, res) {
+//Create a schedule
+app.post('/', function (req, res) {
+  const scheduleName = req.body.scheduleName;
+  const accessCode = req.body.accessCode;
+  const days = req.body.days;
 
-	console.log("HTTP Put Request");
+  const scheduleReference = firebase.database().ref(`/schedules/${accessCode}`);
+  scheduleReference.set({name : scheduleName, days: days}, function(error) {
+    if (error) {
+      res.error("Data could not be saved");
+    } else {
+      res.send("Data saved successfully.");
+    }
+  });
+});
 
-	var userName = req.body.UserName;
-	var name = req.body.Name;
-	var age = req.body.Age;
+//Add a user
+app.put('/:accessCode/addUser', function (req, res) {
+	var user = req.body.user;
 
-	var referencePath = '/Users/'+userName+'/';
-	var userReference = firebase.database().ref(referencePath);
-	userReference.set({Name: name, Age: age},
+	var referencePath = `/schedules/${req.params.accessCode}/users`;
+	var userReference = firebase.database().ref(referencePath).push();
+	userReference.set({name: user},
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);
@@ -52,35 +65,6 @@ app.put('/', function (req, res) {
 						res.send("Data saved successfully.");
 					}
 			});
-});
-
-//Update existing instance
-app.post('/', function (req, res) {
-
-	console.log("HTTP POST Request");
-
-	var userName = req.body.UserName;
-	var name = req.body.Name;
-	var age = req.body.Age;
-
-	var referencePath = '/Users/'+userName+'/';
-	var userReference = firebase.database().ref(referencePath);
-	userReference.update({Name: name, Age: age},
-				 function(error) {
-					if (error) {
-						res.send("Data could not be updated." + error);
-					}
-					else {
-						res.send("Data updated successfully.");
-					}
-			    });
-});
-
-//Delete an instance
-app.delete('/', function (req, res) {
-
-   console.log("HTTP DELETE Request");
-   //todo
 });
 
 var server = app.listen(8080, function () {
