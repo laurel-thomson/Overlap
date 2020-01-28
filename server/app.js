@@ -67,6 +67,28 @@ app.put('/:accessCode/addUser', function (req, res) {
 			});
 });
 
+//Update a schedule preference
+app.put('/:accessCode/updateSchedule', function(req, res) {
+  var day = req.body.day;
+  var timeslot = req.body.timeslot;
+  var user = req.body.user;
+  var isAvailable = req.body.isAvailable;
+
+  var userCountPath = `/schedules/${req.params.accessCode}/days/${day}/${timeslot}/userCount`;
+  userCountRef = firebase.database().ref(userCountPath);
+  userCountRef.on("value",
+    function(snapshot) {
+      let count = snapshot.val() + 1;
+      //TODO save new user userCount
+      //TODO save new schedule preference
+      res.send("Data saved successfully");
+    },
+    function(errorObject) {
+      res.error("There was an error saving");
+    }
+  )
+});
+
 var server = app.listen(8080, function () {
 
    var host = server.address().address;
