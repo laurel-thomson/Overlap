@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Home from '../home/Home.js';
 import CreateSchedule from '../create/CreateSchedule.js'
 import FindSchedule from '../calendar/FindSchedule.js';

@@ -30,7 +30,7 @@ class CreateSchedule extends React.Component {
       case 'days':
         component = <SelectDays handleClick={this.moveToHours} eventName={this.props.location.inputValue}/>
         break;
-      case 'hours':
+      default:
         component = <SelectHours handleClick={this.createSchedule} eventName={this.props.location.inputValue}/>
         break
     }

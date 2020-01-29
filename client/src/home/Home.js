@@ -11,8 +11,8 @@ export default class Home extends React.Component {
             your group scheduling solution!
           </p>
         </div>
-        <HomeLink task='create' icon='plus' placeholder='Event Name' task='create'/>
-        <HomeLink task='find' icon='key' placeholder='Access Code' task='find'/>
+        <HomeLink task='create' icon='plus' placeholder='Event Name'/>
+        <HomeLink task='find' icon='key' placeholder='Access Code'/>
       </div>
     );
   }

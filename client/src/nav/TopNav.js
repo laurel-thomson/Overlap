@@ -7,7 +7,7 @@ export default class TopNav extends React.Component {
     return (
       <div className='topnav'>
         <Link to='/'>
-          <img src={require("../images/logo.svg")}/>
+          <img src={require("../images/logo.svg")} alt='Overlap logo'/>
         </Link>
       </div>
     );

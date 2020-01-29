@@ -46,7 +46,7 @@ export default class SelectUser extends React.Component {
             <button className={this.state.selectedUser === '' ? 'done' : 'done active'} onClick={this.handleClick}> SUBMIT</button>
           </div>
         );
-      case 'not-found':
+      default:
         return <WentWrong />
     }
   }

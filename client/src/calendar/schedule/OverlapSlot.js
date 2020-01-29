@@ -7,7 +7,7 @@ export default class OverlapSlot extends React.Component {
     return (
       <div className='timeslot overlap'>
         <p>{this.props.name}</p>
-        <button style={{'background-color' : `rgba(15, 158, 196, ${opacity})`}}>
+        <button style={{'backgroundColor' : `rgba(15, 158, 196, ${opacity})`}}>
           {this.props.overlap} / {this.props.totalUsers}
         </button>
       </div>

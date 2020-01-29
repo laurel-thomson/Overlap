@@ -20,7 +20,7 @@ export default class SelectDays extends React.Component {
         return <SpecificDays />
       case 'range':
         return <DateRange />
-      case 'week':
+      default:
         return <DaysOfWeek />
     }
   };

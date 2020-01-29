@@ -17,7 +17,7 @@ export default class FindSchedule extends React.Component {
         return <p>Looking for schedule...</p>
       case 'found':
         return <Calendar accessCode={this.state.accessCode}/>
-      case 'not-found':
+      default:
         return <NotFound />
     }
   };
