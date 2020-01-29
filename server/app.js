@@ -8,6 +8,9 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 const firebase = require('firebase');
 const config = {
   apiKey: 'AIzaSyCWC-hawqPxalkgb1MFye2Z6_3NFbO_gXU',
@@ -21,6 +24,16 @@ const config = {
 };
 firebase.initializeApp(config);
 
+//get all users
+app.get('/:accessCode/users', function(req, res) {
+  const usersRef = firebase.database().ref(`/schedules/${req.params.accessCode}/users`);
+  usersRef.once('value')
+    .then(
+      (result) => res.json(result.val()),
+      (error) => res.send(`The read failed: ${error.code}`)
+    );
+});
+
 //get a schedule
 app.get('/:accessCode', function (req, res) {
 	const scheduleRef = firebase.database().ref(`/schedules/${req.params.accessCode}`);
@@ -28,7 +41,7 @@ app.get('/:accessCode', function (req, res) {
 	scheduleRef.once('value')
     .then(
       (result) => res.json(result.val()),
-      (error) => res.send('The read failed: ' + error.code)
+      (error) => res.send(`The read failed: ${error.code}`)
     );
 });
 
@@ -47,6 +60,7 @@ app.post('/', function (req, res) {
 
 //Add a user
 app.put('/:accessCode/addUser', function (req, res) {
+  console.log(req);
 	const user = req.body.user;
 	const referencePath = `/schedules/${req.params.accessCode}/users`;
 	const userReference = firebase.database().ref(referencePath).push();
