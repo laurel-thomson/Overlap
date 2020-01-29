@@ -1,98 +1,84 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var firebase = require('firebase');
-var config = {
-  apiKey: "AIzaSyCWC-hawqPxalkgb1MFye2Z6_3NFbO_gXU",
-  authDomain: "overlap-cae10.firebaseapp.com",
-  databaseURL: "https://overlap-cae10.firebaseio.com",
-  projectId: "overlap-cae10",
-  storageBucket: "overlap-cae10.appspot.com",
-  messagingSenderId: "625223917957",
-  appId: "1:625223917957:web:641fbb30055ce17349e4ec",
-  measurementId: "G-8YS7YHQW9K"
+const firebase = require('firebase');
+const config = {
+  apiKey: 'AIzaSyCWC-hawqPxalkgb1MFye2Z6_3NFbO_gXU',
+  authDomain: 'overlap-cae10.firebaseapp.com',
+  databaseURL: 'https://overlap-cae10.firebaseio.com',
+  projectId: 'overlap-cae10',
+  storageBucket: 'overlap-cae10.appspot.com',
+  messagingSenderId: '625223917957',
+  appId: '1:625223917957:web:641fbb30055ce17349e4ec',
+  measurementId: 'G-8YS7YHQW9K'
 };
 firebase.initializeApp(config);
 
 //get a schedule
 app.get('/:accessCode', function (req, res) {
-	var scheduleRef = firebase.database().ref(`/schedules/${req.params.accessCode}`);
+	const scheduleRef = firebase.database().ref(`/schedules/${req.params.accessCode}`);
 
-	scheduleRef.on("value",
-			  function(snapshot) {
-					console.log(snapshot.val());
-					res.json(snapshot.val());
-					userReference.off("value");
-					},
-			  function (errorObject) {
-					console.log("The read failed: " + errorObject.code);
-					res.send("The read failed: " + errorObject.code);
-			 });
+	scheduleRef.once('value')
+    .then(
+      (result) => res.json(result.val()),
+      (error) => res.send('The read failed: ' + error.code)
+    );
 });
 
 //Create a schedule
 app.post('/', function (req, res) {
   const scheduleName = req.body.scheduleName;
   const accessCode = req.body.accessCode;
-  const days = req.body.days;
-
+  const schedule = req.body.schedule;
   const scheduleReference = firebase.database().ref(`/schedules/${accessCode}`);
-  scheduleReference.set({name : scheduleName, days: days}, function(error) {
-    if (error) {
-      res.error("Data could not be saved");
-    } else {
-      res.send("Data saved successfully.");
-    }
-  });
+  scheduleReference.set({name : scheduleName, days: schedule})
+    .then(
+      (result) => res.send('Data saved successfully.'),
+      (error) => res.error('Data could not be saved')
+    );
 });
 
 //Add a user
 app.put('/:accessCode/addUser', function (req, res) {
-	var user = req.body.user;
-
-	var referencePath = `/schedules/${req.params.accessCode}/users`;
-	var userReference = firebase.database().ref(referencePath).push();
-	userReference.set({name: user},
-				 function(error) {
-					if (error) {
-						res.send("Data could not be saved." + error);
-					}
-					else {
-						res.send("Data saved successfully.");
-					}
-			});
+	const user = req.body.user;
+	const referencePath = `/schedules/${req.params.accessCode}/users`;
+	const userReference = firebase.database().ref(referencePath).push();
+	userReference.set({name: user})
+    .then(
+      (result) => res.send('Data saved successfully.'),
+      (error) => res.send('Data could not be saved.' + error)
+    );
 });
 
 //Update a schedule preference
 app.put('/:accessCode/updateSchedule', function(req, res) {
-  var day = req.body.day;
-  var timeslot = req.body.timeslot;
-  var user = req.body.user;
-  var isAvailable = req.body.isAvailable;
+  const day = req.body.day;
+  const timeIndex = req.body.timeIndex;
+  const user = req.body.user;
+  const isAvailable = req.body.isAvailable;
+  const path = `/schedules/${req.params.accessCode}/days/${day}/${timeIndex}/users/`;
 
-  var userCountPath = `/schedules/${req.params.accessCode}/days/${day}/${timeslot}/userCount`;
-  userCountRef = firebase.database().ref(userCountPath);
-  userCountRef.on("value",
-    function(snapshot) {
-      let count = snapshot.val() + 1;
-      //TODO save new user userCount
-      //TODO save new schedule preference
-      res.send("Data saved successfully");
-    },
-    function(errorObject) {
-      res.error("There was an error saving");
-    }
-  )
+  if (isAvailable) {
+    firebase.database().ref(path).update({ [user] : true })
+      .then(
+        (result) => res.send('Data saved successfully.'),
+        (error) => res.send('Data could not be saved.' + error)
+      );
+  } else {
+    firebase.database().ref(path + user).remove()
+      .then(
+        (result) => res.send('Data saved successfully.'),
+        (error) => res.send('Data could not be saved.' + error),
+      );
+  }
 });
 
 var server = app.listen(8080, function () {
-
-   var host = server.address().address;
-   var port = server.address().port;
-
-   console.log("Example app listening at http://%s:%s", host, port);
+   const host = server.address().address;
+   const port = server.address().port;
+   console.log('Example app listening at http://%s:%s', host, port);
 });
