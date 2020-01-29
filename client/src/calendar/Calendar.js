@@ -39,8 +39,8 @@ export default class Calendar extends React.Component {
     <div className='calendar'>
       <div className='header'>
         <h1>Insert Event Name Here</h1>
-        <CodeCopy label='Access Code' code={this.props.match.params.id}/>
-        <CodeCopy label='URL' code={`overlap.com/${this.props.match.params.id}`}/>
+        <CodeCopy label='Access Code' code={this.props.accessCode}/>
+        <CodeCopy label='URL' code={`overlap.com/${this.props.accessCode}`}/>
       </div>
       <div className='tabs'>
         <button className={ this.state.tabOption === 'mine' ? 'selected' : '' }
