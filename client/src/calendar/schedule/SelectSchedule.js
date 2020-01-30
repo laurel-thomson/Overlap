@@ -9,7 +9,7 @@ export default class SelectSchedule extends React.Component {
     return (
       <div className='schedule mine'>
         {Object.keys(days).map((day) => {
-          return <SelectableDay key={day} name={day} timeslots={days[day]} />
+          return <SelectableDay key={day} name={day} timeslots={days[day]} currentUser={this.props.currentUser} />
         })}
       </div>
     );

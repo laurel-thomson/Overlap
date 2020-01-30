@@ -7,7 +7,11 @@ export default class SelectableDay extends React.Component {
     super(props);
     const slots = [];
     this.props.timeslots.map((timeslot) => {
-      slots.push({ name : timeslot.time, selected : false });
+      let selected = false;
+      if (timeslot.users) {
+        selected = Object.keys(timeslot.users).filter((user) => user === this.props.currentUser).length > 0;
+      }
+      slots.push({ name : timeslot.time, selected : selected });
     });
     this.state = {
       slots : slots
@@ -28,7 +32,6 @@ export default class SelectableDay extends React.Component {
   }
 
   render() {
-    console.log(this.props.timeslots)
     return (
       <div className='day selectable'>
         <h3>{this.props.name}</h3>
