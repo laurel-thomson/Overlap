@@ -18,10 +18,24 @@ export default class SelectableDay extends React.Component {
     }
   }
 
-  toggleSlot = (name) => {
-    const updatedSlots = this.state.slots.map((slot) => {
-      if (slot.name === name) {
-        return { name : slot.name, selected : !slot.selected };
+  saveSelection = (timeIndex, selected) => {
+    const axios = require('axios').default;
+    axios.put(`http://localhost:8080/${this.props.accessCode}/updateSchedule`, {
+      user : this.props.currentUser,
+      day : this.props.name,
+      timeIndex : timeIndex,
+      isAvailable : selected
+    })
+      .then((res) => console.log(res))
+      .catch((error) => console.error(error));
+  }
+
+  toggleSlot = (time) => {
+    const updatedSlots = this.state.slots.map((slot, index) => {
+      if (slot.name === time) {
+        let selected = !slot.selected;
+        this.saveSelection(index, selected);
+        return { name : slot.name, selected : selected };
       } else {
         return slot;
       }
