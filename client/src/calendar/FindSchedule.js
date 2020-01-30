@@ -7,7 +7,8 @@ export default class FindSchedule extends React.Component {
     super(props);
     this.state = {
       accessCode : this.props.match.params.id,
-      searchStatus : 'looking'
+      searchStatus : 'looking',
+      schedule : {}
     }
   }
 
@@ -16,7 +17,7 @@ export default class FindSchedule extends React.Component {
       case 'looking':
         return <p>Looking for schedule...</p>
       case 'found':
-        return <Calendar accessCode={this.state.accessCode}/>
+        return <Calendar accessCode={this.state.accessCode} schedule={this.state.schedule}/>
       default:
         return <NotFound />
     }
@@ -28,7 +29,10 @@ export default class FindSchedule extends React.Component {
       .then(
         (result) => {
           if (result !== null && result.data !== null) {
-            this.setState({ searchStatus : 'found' })
+            this.setState({
+              searchStatus : 'found',
+              schedule : result.data
+            });
           } else {
             this.setState({ searchStatus : 'not-found' })
           }

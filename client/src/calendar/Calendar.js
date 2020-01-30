@@ -23,9 +23,14 @@ export default class Calendar extends React.Component {
   getComponent = () => {
     switch (this.state.tabOption) {
       case 'mine':
-        return <MySchedule currentUser={this.state.currentUser} handleSubmit={this.selectUser} accessCode={this.props.accessCode}/>
+        return <MySchedule
+          schedule={this.props.schedule}
+          currentUser={this.state.currentUser}
+          handleSubmit={this.selectUser}
+          accessCode={this.props.accessCode}
+        />
       default:
-        return <OverlapSchedule accessCode={this.props.accessCode}/>
+        return <OverlapSchedule schedule={this.props.schedule} accessCode={this.props.accessCode}/>
     }
   };
 
@@ -38,7 +43,7 @@ export default class Calendar extends React.Component {
   render = () =>
     <div className='calendar'>
       <div className='header'>
-        <h1>Insert Event Name Here</h1>
+        <h1>{this.props.schedule.name}</h1>
         <CodeCopy label='Access Code' code={this.props.accessCode}/>
         <CodeCopy label='URL' code={`overlap.com/${this.props.accessCode}`}/>
       </div>

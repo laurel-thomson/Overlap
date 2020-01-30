@@ -5,12 +5,12 @@ import './Schedule.css';
 export default class SelectableDay extends React.Component {
   constructor(props) {
     super(props);
+    const slots = [];
+    this.props.timeslots.map((timeslot) => {
+      slots.push({ name : timeslot.time, selected : false });
+    });
     this.state = {
-      slots : [
-         { name : '08:30', selected : false },
-         { name : '09:00', selected : true },
-         { name : '09:30', selected : false },
-      ]
+      slots : slots
     }
   }
 
@@ -28,6 +28,7 @@ export default class SelectableDay extends React.Component {
   }
 
   render() {
+    console.log(this.props.timeslots)
     return (
       <div className='day selectable'>
         <h3>{this.props.name}</h3>

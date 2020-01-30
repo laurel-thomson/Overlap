@@ -56,19 +56,17 @@ export default class SelectUser extends React.Component {
     axios.get(`http://localhost:8080/${this.props.accessCode}/users`)
       .then(
         (result) => {
+          const users = [];
+          users.push(''); //empty user, for the input where user enters new name
           if (result !== null && result.data !== null) {
-            const users = [];
-            users.push(''); //empty user, for the input where user enters new name
             Object.values(result.data).forEach((user) => {
               users.push(user.name);
             });
-            this.setState({
-              searchStatus : 'found',
-              users : users
-            })
-          } else {
-            this.setState({ searchStatus : 'not-found' });
           }
+          this.setState({
+            searchStatus : 'found',
+            users : users
+          });
         },
         (error) => {
           console.log(error);
