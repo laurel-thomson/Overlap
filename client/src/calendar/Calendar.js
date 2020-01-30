@@ -10,7 +10,9 @@ export default class Calendar extends React.Component {
 
     this.state = {
       tabOption : 'mine',
-      currentUser : ''
+      currentUser : '',
+      users : [],
+      searchStatus : 'looking'
     }
   }
 
@@ -24,13 +26,19 @@ export default class Calendar extends React.Component {
     switch (this.state.tabOption) {
       case 'mine':
         return <MySchedule
+          users = {this.state.users}
+          searchStatus = {this.state.searchStatus}
           schedule={this.props.schedule}
           currentUser={this.state.currentUser}
           handleSubmit={this.selectUser}
           accessCode={this.props.accessCode}
         />
       default:
-        return <OverlapSchedule schedule={this.props.schedule} accessCode={this.props.accessCode}/>
+        return <OverlapSchedule
+        users={this.state.users}
+        searchStatus={this.state.searchStatus}
+        schedule={this.props.schedule}
+        accessCode={this.props.accessCode}/>
     }
   };
 
@@ -39,6 +47,29 @@ export default class Calendar extends React.Component {
       tabOption : tab
     });
   };
+
+  componentDidMount() {
+    const axios = require('axios').default;
+    axios.get(`http://localhost:8080/${this.props.accessCode}/users`)
+      .then(
+        (result) => {
+          const users = [];
+          if (result !== null && result.data !== null) {
+            Object.values(result.data).forEach((user) => {
+              users.push(user.name);
+            });
+          }
+          this.setState({
+            searchStatus : 'found',
+            users : users
+          });
+        },
+        (error) => {
+          console.log(error);
+          this.setState({ searchStatus : 'not-found' })
+        }
+      )
+  }
 
   render = () =>
     <div className='calendar'>

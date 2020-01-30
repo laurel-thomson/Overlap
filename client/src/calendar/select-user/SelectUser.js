@@ -10,7 +10,6 @@ export default class SelectUser extends React.Component {
     this.state = {
       selectedUser : '',
       selectedIndex : -1,
-      searchStatus : 'looking',
       users : []
     }
   }
@@ -25,7 +24,7 @@ export default class SelectUser extends React.Component {
   handleClick = () => this.props.handleSubmit(this.state.selectedUser);
 
   getUsersComponents = () => {
-    switch (this.state.searchStatus) {
+    switch (this.props.searchStatus) {
       case 'looking':
         return <p>looking...</p>
       case 'found':
@@ -33,13 +32,19 @@ export default class SelectUser extends React.Component {
           <div>
             <h4>Identify yourself to continue</h4>
             <div className='options'>
-              {this.state.users.map((user, index) =>
+              <UserOption
+                user={""}
+                index={0}
+                selectUser={this.selectUser}
+                selected={0 === this.state.selectedIndex}
+              />
+              {this.props.users.map((user, index) =>
                 <UserOption
                   user={user}
-                  key={index}
-                  index={index}
+                  key={index+1}
+                  index={index+1}
                   selectUser={this.selectUser}
-                  selected={index === this.state.selectedIndex}
+                  selected={index+1 === this.state.selectedIndex}
                 />
               )}
             </div>
@@ -49,30 +54,6 @@ export default class SelectUser extends React.Component {
       default:
         return <WentWrong />
     }
-  }
-
-  componentDidMount() {
-    const axios = require('axios').default;
-    axios.get(`http://localhost:8080/${this.props.accessCode}/users`)
-      .then(
-        (result) => {
-          const users = [];
-          users.push(''); //empty user, for the input where user enters new name
-          if (result !== null && result.data !== null) {
-            Object.values(result.data).forEach((user) => {
-              users.push(user.name);
-            });
-          }
-          this.setState({
-            searchStatus : 'found',
-            users : users
-          });
-        },
-        (error) => {
-          console.log(error);
-          this.setState({ searchStatus : 'not-found' })
-        }
-      )
   }
 
   render() {
