@@ -14,6 +14,15 @@ export default class SpecificDays extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.getSelectedDays(this.getSelectedDays);
+  }
+
+  getSelectedDays = () => {
+    //TODO: get the days the user selected
+    return ['Sunday 1st', 'Monday 2nd'];
+  }
+
   handleDayClick = (day) => {
     const range = DateUtils.addDayToRange(day, this.state);
     this.setState(range);

@@ -10,18 +10,19 @@ export default class SelectDays extends React.Component {
     super(props);
 
     this.state = {
-      dayOption : 'specific'
+      dayOption : 'specific',
+      selectedDays : []
     }
   }
 
   getComponent = () => {
     switch(this.state.dayOption) {
       case 'specific':
-        return <SpecificDays />
+        return <SpecificDays getSelectedDays={ (childMethod) => this.getSelectedDays = childMethod } />
       case 'range':
-        return <DateRange />
+        return <DateRange getSelectedDays={ (childMethod) => this.getSelectedDays = childMethod } />
       default:
-        return <DaysOfWeek />
+        return <DaysOfWeek getSelectedDays={ (childMethod) => this.getSelectedDays = childMethod } />
     }
   };
 
@@ -30,6 +31,12 @@ export default class SelectDays extends React.Component {
       dayOption : option
     })
   };
+
+  handleClick = () => {
+    //TODO : pass the selected days to the parent component
+    console.log(this.getSelectedDays());
+    this.props.handleClick();
+  }
 
   render() {
     return (
@@ -51,7 +58,7 @@ export default class SelectDays extends React.Component {
           </button>
         </div>
         {this.getComponent()}
-        <button className='done' onClick={this.props.handleClick}>NEXT <FontAwesomeIcon icon='angle-right' className='arrow'/></button>
+        <button className='done' onClick={this.handleClick}>NEXT <FontAwesomeIcon icon='angle-right' className='arrow'/></button>
       </div>
     );
   }

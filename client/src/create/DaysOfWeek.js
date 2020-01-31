@@ -2,6 +2,18 @@ import React from 'react';
 import './CreateSchedule.css';
 
 export default class DaysOfWeek extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.getSelectedDays(this.getSelectedDays);
+  }
+
+  getSelectedDays = () => {
+    //TODO: get the days the user selected
+    return ['Sunday', 'Monday'];
+  }
 
   render() {
     const daysofweek = [
