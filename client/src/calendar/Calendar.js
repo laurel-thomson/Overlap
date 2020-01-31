@@ -31,7 +31,17 @@ export default class Calendar extends React.Component {
     })
   }
 
+  addNewUser = (user) => {
+    const axios = require('axios').default;
+    axios.put(`http://localhost:8080/${this.props.accessCode}/addUser`, {user: user})
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  }
+
   selectUser = (user) => {
+    if (!this.state.users.includes(user)) {
+      this.addNewUser(user);
+    }
     this.setState({
       currentUser : user
     })
