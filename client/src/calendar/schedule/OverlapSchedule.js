@@ -5,7 +5,7 @@ import './Schedule.css';
 export default class OverlapSchedule extends React.Component {
   calculateSchedule = () => {
     const totalUsers = this.props.users;
-    const schedule = this.props.schedule.days;
+    const schedule = this.props.schedule;
     return Object.keys(schedule).map((day) => {
       const timeslots = schedule[day].map((index) => {
         return { name : index.time, overlap : index.users ? Object.keys(index.users).length : 0 };

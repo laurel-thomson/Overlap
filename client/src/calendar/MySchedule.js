@@ -11,7 +11,11 @@ export default class MySchedule extends React.Component {
         handleSubmit={this.props.handleSubmit}
         accessCode={this.props.accessCode}/>;
     } else {
-      return <SelectSchedule currentUser={this.props.currentUser} schedule={this.props.schedule} accessCode={this.props.accessCode}/>;
+      return <SelectSchedule
+        currentUser={this.props.currentUser}
+        schedule={this.props.schedule}
+        accessCode={this.props.accessCode}
+        updateSchedule={this.props.updateSchedule}/>;
     }
   }
 

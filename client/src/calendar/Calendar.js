@@ -12,8 +12,15 @@ export default class Calendar extends React.Component {
       tabOption : 'mine',
       currentUser : '',
       users : [],
+      schedule: this.props.schedule.days,
       searchStatus : 'looking'
     }
+  }
+
+  updateSchedule = (schedule) => {
+    this.setState({
+      schedule : schedule
+    })
   }
 
   selectUser = (user) => {
@@ -28,16 +35,17 @@ export default class Calendar extends React.Component {
         return <MySchedule
           users = {this.state.users}
           searchStatus = {this.state.searchStatus}
-          schedule={this.props.schedule}
+          schedule={this.state.schedule}
           currentUser={this.state.currentUser}
           handleSubmit={this.selectUser}
           accessCode={this.props.accessCode}
+          updateSchedule={this.updateSchedule}
         />
       default:
         return <OverlapSchedule
         users={this.state.users}
         searchStatus={this.state.searchStatus}
-        schedule={this.props.schedule}
+        schedule={this.state.schedule}
         accessCode={this.props.accessCode}/>
     }
   };
