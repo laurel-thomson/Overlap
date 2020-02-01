@@ -41,6 +41,11 @@ export default class Calendar extends React.Component {
   selectUser = (user) => {
     if (!this.state.users.includes(user)) {
       this.addNewUser(user);
+      const users = this.state.users.slice(0);
+      users.push(user);
+      this.setState({
+        users : users
+      })
     }
     this.setState({
       currentUser : user
