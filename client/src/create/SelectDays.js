@@ -33,9 +33,7 @@ export default class SelectDays extends React.Component {
   };
 
   handleClick = () => {
-    //TODO : pass the selected days to the parent component
-    console.log(this.getSelectedDays());
-    this.props.handleClick();
+    this.props.handleClick(this.getSelectedDays());
   }
 
   render() {
