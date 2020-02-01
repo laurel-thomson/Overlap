@@ -63,9 +63,10 @@ class CreateSchedule extends React.Component {
       accessCode : accessCode,
       schedule : schedule
     })
-      .then((result) => console.log(result))
+      .then((result) => {
+        this.props.history.push(`/${accessCode}`);
+      })
       .catch((error) => console.log(error))
-    this.props.history.push(`/${name}`);
   }
 
   render() {
