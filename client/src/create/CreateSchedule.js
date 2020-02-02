@@ -17,10 +17,10 @@ class CreateSchedule extends React.Component {
     let component;
     switch(this.state.currentComponent) {
       case 'days':
-        component = <SelectDays handleClick={this.moveToHours}/>
+        component = <SelectDays handleClick={this.moveToHours} eventName={this.props.location.eventName}/>
         break;
       default:
-        component = <SelectHours handleClick={this.createSchedule}/>
+        component = <SelectHours handleClick={this.createSchedule} eventName={this.props.location.eventName}/>
         break
     }
     return component;
@@ -35,7 +35,7 @@ class CreateSchedule extends React.Component {
 
   createSchedule = (selectedHours) => {
     const name = this.props.location.eventName;
-    const accessCode = '1234'; //TODO: create an access code
+    const accessCode = Math.random().toString(36).substr(2, 6);
     const schedule = {};
     this.state.selectedDays.forEach((day) => {
       let days = [];
@@ -44,7 +44,6 @@ class CreateSchedule extends React.Component {
       });
       schedule[day] = days;
     });
-    console.log(schedule);
     const axios = require('axios').default;
     axios.post('http://localhost:8080/', {
       scheduleName : name,
