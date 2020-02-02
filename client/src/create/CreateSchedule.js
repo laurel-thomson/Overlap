@@ -13,27 +13,14 @@ class CreateSchedule extends React.Component {
     };
   }
 
-  componentDidMount() {
-    window.addEventListener('beforeunload', this.beforeunload.bind(this));
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('beforeunload', this.beforeunload.bind(this));
-  }
-
-  beforeunload(e) {
-    e.preventDefault();
-    e.returnValue = true;
-  }
-
   getComponent = () => {
     let component;
     switch(this.state.currentComponent) {
       case 'days':
-        component = <SelectDays handleClick={this.moveToHours} eventName={this.props.location.inputValue}/>
+        component = <SelectDays handleClick={this.moveToHours}/>
         break;
       default:
-        component = <SelectHours handleClick={this.createSchedule} eventName={this.props.location.inputValue}/>
+        component = <SelectHours handleClick={this.createSchedule}/>
         break
     }
     return component;
@@ -46,7 +33,8 @@ class CreateSchedule extends React.Component {
     });
   }
 
-  createSchedule = (name, selectedHours) => {
+  createSchedule = (selectedHours) => {
+    const name = this.props.location.eventName;
     const accessCode = '1234'; //TODO: create an access code
     const schedule = {};
     this.state.selectedDays.forEach((day) => {
