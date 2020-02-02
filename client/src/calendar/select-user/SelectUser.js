@@ -9,8 +9,7 @@ export default class SelectUser extends React.Component {
 
     this.state = {
       selectedUser : '',
-      selectedIndex : -1,
-      users : []
+      selectedIndex : -1
     }
   }
 
@@ -48,7 +47,7 @@ export default class SelectUser extends React.Component {
                 />
               )}
             </div>
-            <button className={this.state.selectedUser === '' ? 'done' : 'done active'} onClick={this.handleClick}> SUBMIT</button>
+            <button disabled={this.state.selectedUser === ''} className={this.state.selectedUser === '' ? 'done' : 'done active'} onClick={this.handleClick}> SUBMIT</button>
           </div>
         );
       default:

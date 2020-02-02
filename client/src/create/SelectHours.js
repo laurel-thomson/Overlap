@@ -71,7 +71,7 @@ export default class SelectHours extends React.Component {
           <label htmlFor='endTime'>End Time</label>
           <input name='endTime' type='time' defaultValue="17:00" onChange={this.handleEndChange}/>
         </div>
-        <button className='done' onClick={() => this.props.handleClick(this.getSelectedHours())}>
+        <button className='done active' onClick={() => this.props.handleClick(this.getSelectedHours())}>
           DONE
         </button>
       </div>

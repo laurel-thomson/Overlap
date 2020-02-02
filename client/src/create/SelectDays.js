@@ -70,7 +70,7 @@ export default class SelectDays extends React.Component {
           </button>
         </div>
         {this.getComponent()}
-        <button className={this.state.hasSelection ? 'done active' : 'done'} onClick={this.handleClick}>NEXT <FontAwesomeIcon icon='angle-right' className='arrow'/></button>
+        <button disabled={!this.state.hasSelection} className={this.state.hasSelection ? 'done active' : 'done'} onClick={this.handleClick}>NEXT <FontAwesomeIcon icon='angle-right' className='arrow'/></button>
       </div>
     );
   }

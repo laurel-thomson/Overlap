@@ -69,6 +69,11 @@
   font-size: 20px;
 }
 
+.homelink .link.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .homelink .arrow {
   font-size: 30px;
   padding: 15px;
