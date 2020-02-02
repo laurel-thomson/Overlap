@@ -22,7 +22,7 @@ export default class SelectableDay extends React.Component {
     const updatedSlots = this.state.slots.map((slot, index) => {
       if (slot.name === time) {
         let selected = !slot.selected;
-        this.props.saveSelection(this.props.name, index, selected);
+        this.props.saveSelection(this.props.index, index, selected);
         return { name : slot.name, selected : selected };
       } else {
         return slot;

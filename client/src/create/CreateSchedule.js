@@ -39,13 +39,14 @@ class CreateSchedule extends React.Component {
   createSchedule = (selectedHours) => {
     const name = this.props.location.eventName;
     const accessCode = Math.random().toString(36).substr(2, 6);
-    const schedule = {};
+    const schedule = [];
     this.state.selectedDays.forEach((day) => {
-      let days = [];
+      const timeslots = [];
       selectedHours.forEach((timeslot) => {
-        days.push({ time : timeslot})
+        timeslots.push({ time : timeslot})
       });
-      schedule[day] = days;
+      const newDay = {name : day, timeslots : timeslots}
+      schedule.push(newDay);
     });
     const axios = require('axios').default;
     axios.post('http://localhost:8080/', {

@@ -8,8 +8,8 @@ export default class Calendar extends React.Component {
   constructor(props) {
     super(props);
 
-    Object.keys(this.props.schedule.days).forEach((day) => {
-      this.props.schedule.days[day].forEach((timeslot) => {
+    this.props.schedule.days.forEach((day) => {
+      day.timeslots.forEach((timeslot) => {
         if (!timeslot.users) {
           timeslot.users = {};
         }

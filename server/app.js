@@ -74,12 +74,11 @@ app.put('/:accessCode/addUser', function (req, res) {
 
 //Update a schedule preference
 app.put('/:accessCode/updateSchedule', function(req, res) {
-  const day = req.body.day;
+  const dayIndex = req.body.dayIndex;
   const timeIndex = req.body.timeIndex;
   const user = req.body.user;
   const isAvailable = req.body.isAvailable;
-  const path = `/schedules/${req.params.accessCode}/days/${day}/${timeIndex}/users/`;
-  console.log(path);
+  const path = `/schedules/${req.params.accessCode}/days/${dayIndex}/timeslots/${timeIndex}/users/`;
 
   if (isAvailable) {
     firebase.database().ref(path).update({ [user] : true })
