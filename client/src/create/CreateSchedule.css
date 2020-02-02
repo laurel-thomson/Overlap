@@ -53,7 +53,12 @@
   padding-top: 10px;
   padding-bottom: 10px;
   border: none;
+  opacity: 0.5;
+}
+
+.select button.done.active {
   cursor: pointer;
+  opacity: 1;
 }
 
 .select .input {

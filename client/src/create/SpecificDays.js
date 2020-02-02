@@ -33,6 +33,7 @@ export default class SpecificDays extends React.Component {
     }  else {
       selectedDays.push(day);
     }
+    this.props.updateHasSelection(selectedDays.length > 0);
     this.setState({ selectedDays });
   };
 

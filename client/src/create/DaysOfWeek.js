@@ -5,13 +5,13 @@ export default class DaysOfWeek extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Sunday : true,
-      Monday : true,
-      Tuesday : true,
-      Wednesday: true,
-      Thursday : true,
-      Friday : true,
-      Saturday : true
+      Sunday : false,
+      Monday : false,
+      Tuesday : false,
+      Wednesday: false,
+      Thursday : false,
+      Friday : false,
+      Saturday : false
     }
     this.daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   }
@@ -27,6 +27,19 @@ export default class DaysOfWeek extends React.Component {
   handleClick = (event) => {
     const day = event.target.name;
     let isSelected = this.state[day];
+    let hasSelection = false;
+    Object.keys(this.state).forEach((d) => {
+      if (d === day) {
+        if (!this.state[d]) {
+          hasSelection = true;
+        }
+      } else {
+        if (this.state[d]) {
+          hasSelection = true;
+        }
+      }
+    });
+    this.props.updateHasSelection(hasSelection);
     this.setState({
       [day] : !isSelected
     })
@@ -39,7 +52,7 @@ export default class DaysOfWeek extends React.Component {
           return (
             <div className='day-of-week' key={index}>
               <label>
-                <input type='checkbox' name={day} onClick={this.handleClick} defaultChecked />
+                <input type='checkbox' name={day} onClick={this.handleClick} />
                 {day}
               </label>
             </div>

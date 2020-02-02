@@ -36,6 +36,7 @@ export default class SpecificDays extends React.Component {
 
   handleDayClick = (day) => {
     const range = DateUtils.addDayToRange(day, this.state);
+    this.props.updateHasSelection(range.from !== undefined && range.to !== undefined);
     this.setState(range);
   };
 

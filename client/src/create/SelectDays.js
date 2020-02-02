@@ -11,24 +11,38 @@ export default class SelectDays extends React.Component {
 
     this.state = {
       dayOption : 'specific',
-      selectedDays : []
+      selectedDays : [],
+      hasSelection : false
     }
   }
 
   getComponent = () => {
     switch(this.state.dayOption) {
       case 'specific':
-        return <SpecificDays getSelectedDays={ (childMethod) => this.getSelectedDays = childMethod } />
+        return <SpecificDays
+          getSelectedDays={ (childMethod) => this.getSelectedDays = childMethod }
+          updateHasSelection={this.updateHasSelection} />
       case 'range':
-        return <DateRange getSelectedDays={ (childMethod) => this.getSelectedDays = childMethod } />
+        return <DateRange
+        getSelectedDays={ (childMethod) => this.getSelectedDays = childMethod }
+        updateHasSelection={this.updateHasSelection} />
       default:
-        return <DaysOfWeek getSelectedDays={ (childMethod) => this.getSelectedDays = childMethod } />
+        return <DaysOfWeek
+          getSelectedDays={ (childMethod) => this.getSelectedDays = childMethod }
+          updateHasSelection={this.updateHasSelection} />
     }
   };
 
+  updateHasSelection = (hasSelection) => {
+    this.setState({
+      hasSelection : hasSelection
+    });
+  }
+
   switchDayOption = (option) => {
     this.setState({
-      dayOption : option
+      dayOption : option,
+      hasSelection : false
     })
   };
 
@@ -56,7 +70,7 @@ export default class SelectDays extends React.Component {
           </button>
         </div>
         {this.getComponent()}
-        <button className='done' onClick={this.handleClick}>NEXT <FontAwesomeIcon icon='angle-right' className='arrow'/></button>
+        <button className={this.state.hasSelection ? 'done active' : 'done'} onClick={this.handleClick}>NEXT <FontAwesomeIcon icon='angle-right' className='arrow'/></button>
       </div>
     );
   }
