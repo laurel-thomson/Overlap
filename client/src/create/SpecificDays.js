@@ -17,8 +17,10 @@ export default class SpecificDays extends React.Component {
   }
 
   getSelectedDays = () => {
-    //TODO: get the days the user selected
-    return ['3 April', '2 April'];
+    return this.state.selectedDays.map((date) => {
+      const splitString = date.toDateString().split(' ');
+      return `${splitString[0]} - ${splitString[1]} ${splitString[2]}, ${splitString[3]}`;
+    });
   }
 
   handleDayClick = (day, {selected}) => {

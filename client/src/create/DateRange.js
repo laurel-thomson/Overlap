@@ -19,8 +19,19 @@ export default class SpecificDays extends React.Component {
   }
 
   getSelectedDays = () => {
-    //TODO: get the days the user selected
-    return ['Sunday 1st', 'Monday 2nd'];
+    const dates = [];
+    let currentDate = this.state.from;
+    let increment = 1;
+    while (currentDate <= this.state.to) {
+      dates.push(currentDate);
+      currentDate = new Date();
+      currentDate.setDate(this.state.from.getDate() + increment);
+      increment++;
+    }
+    return dates.map((date) => {
+      const splitString = date.toDateString().split(' ');
+      return `${splitString[0]} - ${splitString[1]} ${splitString[2]}, ${splitString[3]}`;
+    });
   }
 
   handleDayClick = (day) => {
