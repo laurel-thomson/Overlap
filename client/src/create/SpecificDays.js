@@ -17,7 +17,7 @@ export default class SpecificDays extends React.Component {
   }
 
   getSelectedDays = () => {
-    return this.state.selectedDays.map((date) => {
+    return this.state.selectedDays.sort().map((date) => {
       const splitString = date.toDateString().split(' ');
       return `${splitString[0]} - ${splitString[1]} ${splitString[2]}, ${splitString[3]}`;
     });
