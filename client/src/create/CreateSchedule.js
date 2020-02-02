@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import SelectDays from './SelectDays.js';
 import SelectHours from './SelectHours.js';
 
@@ -14,6 +14,9 @@ class CreateSchedule extends React.Component {
   }
 
   getComponent = () => {
+    if (!this.props.location.eventName) {
+      return <Redirect to='/' />
+    }
     let component;
     switch(this.state.currentComponent) {
       case 'days':
