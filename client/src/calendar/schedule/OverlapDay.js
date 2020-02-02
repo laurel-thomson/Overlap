@@ -2,10 +2,6 @@ import React from 'react';
 import OverlapSlot from './OverlapSlot.js';
 
 export default class OverlapDay extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className='day overlap'>

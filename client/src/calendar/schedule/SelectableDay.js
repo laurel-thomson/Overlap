@@ -6,7 +6,7 @@ export default class SelectableDay extends React.Component {
   constructor(props) {
     super(props);
     const slots = [];
-    this.props.timeslots.map((timeslot) => {
+    this.props.timeslots.forEach((timeslot) => {
       let selected = false;
       if (timeslot.users) {
         selected = Object.keys(timeslot.users).filter((user) => user === this.props.currentUser).length > 0;

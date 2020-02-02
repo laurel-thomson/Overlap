@@ -23,8 +23,39 @@ export default class SelectHours extends React.Component {
   }
 
   getSelectedHours = () => {
-    //TODO: get the selected hours
-    return ['08:00','08:30','09:00','09:30','10:00'];
+    const times = [];
+    let currentTime = this.state.startTime;
+    while (currentTime !== this.state.endTime) {
+      times.push(currentTime);
+      const splitString = currentTime.split(':');
+      let hour = parseInt(splitString[0], 10);
+      let minutes = splitString[1];
+      if (minutes === '30') {
+        hour++;
+        minutes = '00';
+      } else {
+        minutes = '30';
+      }
+      if (hour < 10) {
+        hour = '0' + hour;
+      }
+      currentTime = `${hour}:${minutes}`;
+    }
+    times.push(this.state.endTime);
+    return times.map((time) => {
+      const splitString = time.split(':');
+      const minutes = splitString[1];
+      let hour = parseInt(splitString[0], 10);
+      const am_pm = hour < 12 ? 'AM' : 'PM';
+      hour = hour % 12;
+      if (hour === 0) {
+        hour = 12;
+      }
+      if (hour < 10) {
+        hour = '0' + hour;
+      }
+      return `${hour}:${minutes} ${am_pm}`;
+    })
   }
 
   render() {

@@ -24,6 +24,7 @@
 .day .timeslot p {
   font-size: 18px;
   margin: 0;
+  white-space: nowrap;
 }
 
 .day .timeslot button {
