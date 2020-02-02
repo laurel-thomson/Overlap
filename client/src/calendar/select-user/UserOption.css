@@ -75,11 +75,19 @@
 .user-option.selected input {
   color: white;
   font-weight: bold;
+  border-bottom: 1px solid white;
 }
 
 .user-option input::placeholder {
   font-family: 'Source Sans Pro';
   font-size: 22px;
+}
+
+.user-option.selected input::placeholder {
+  color: white;
+  font-family: 'Source Sans Pro';
+  font-size: 22px;
+  font-weight: normal;
 }
 
 .user-option .existing-name {
