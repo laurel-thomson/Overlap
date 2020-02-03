@@ -8,7 +8,7 @@ export default class OverlapSchedule extends React.Component {
     const schedule = this.props.schedule;
     return schedule.map((day, index) => {
       const timeslots = day.timeslots.map((timeslot) => {
-        return { name : timeslot.time, overlap : timeslot.users ? Object.keys(timeslot.users).length : 0 };
+        return { name : timeslot.time, users : timeslot.users };
       });
       return <OverlapDay key={index} name={day.name} timeslots={timeslots} totalUsers={totalUsers.length} />
     });

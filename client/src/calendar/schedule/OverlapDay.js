@@ -12,7 +12,7 @@ export default class OverlapDay extends React.Component {
             <OverlapSlot
               key={index}
               name={slot.name}
-              overlap={slot.overlap}
+              users={slot.users}
               totalUsers={this.props.totalUsers}
             />
           )}

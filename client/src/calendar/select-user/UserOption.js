@@ -49,7 +49,7 @@ export default class UserOption extends React.Component {
           ${this.props.selected ? 'selected' : ''}` }
         onClick={() => this.props.selectUser(this.state.name, this.props.index)}>
         <div className='icon'>
-         <FontAwesomeIcon icon={this.getIcon()} className='circleIcon' color='white'/>
+         <FontAwesomeIcon icon={this.getIcon()} className='circleIcon' color='white' aria-hidden='true'/>
         </div>
         {this.getNameElement()}
       </button>
