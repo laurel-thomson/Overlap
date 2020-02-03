@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
@@ -11,6 +12,8 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 const firebase = require('firebase');
 const config = {
@@ -94,6 +97,7 @@ app.put('/:accessCode/updateSchedule', function(req, res) {
       );
   }
 });
+
 
 var server = app.listen(8080, function () {
    const host = server.address().address;
