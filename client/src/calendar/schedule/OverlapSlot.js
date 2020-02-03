@@ -25,13 +25,15 @@ export default class OverlapSlot extends React.Component {
 
   getTooltip = () => {
     const users = Object.keys(this.props.users);
+    const colors = ['red', 'blue', 'darkgray'];
+    const color = colors[this.props.totalUsers.indexOf()]
     if (users.length > 0) {
       return (
         <div className={`tooltip ${this.state.tooltipOpen ? 'open' : ''}`}>
           {Object.keys(this.props.users).map((user) => {
             return (
-              <div className={'tooltip-user'} key={user}>
-                <div className='icon'>
+              <div className='tooltip-user' key={user}>
+                <div className={`icon ${colors[this.props.totalUsers.indexOf(user) % 3]}`}>
                  <FontAwesomeIcon icon='user' className='circleIcon' color='white' aria-hidden='true'/>
                 </div>
                 {user}
@@ -48,15 +50,16 @@ export default class OverlapSlot extends React.Component {
 
   render() {
     const overlap = Object.keys(this.props.users).length;
-    let opacity = (overlap + 1) / (this.props.totalUsers + 1);
-    if (this.props.totalUsers === 0) {
+    const totalCount = this.props.totalUsers.length;
+    let opacity = (overlap + 1) / (totalCount + 1);
+    if (totalCount === 0) {
       opacity = 0.25;
     }
     return (
       <div className={`timeslot overlap ${overlap > 0 ? 'has-tooltip' : ''}`}>
         <p>{this.props.name}</p>
         <button style={{'backgroundColor' : `rgba(15, 158, 196, ${opacity})`}} onClick={this.toggleTooltip}>
-          {overlap} / {this.props.totalUsers}
+          {overlap} / {totalCount}
         </button>
         {this.getTooltip()}
       </div>

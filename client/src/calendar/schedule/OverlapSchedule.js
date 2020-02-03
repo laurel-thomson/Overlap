@@ -1,5 +1,6 @@
 import React from 'react';
 import OverlapDay from './OverlapDay.js'
+import UserList from './UserList.js'
 import './Schedule.css';
 
 export default class OverlapSchedule extends React.Component {
@@ -10,13 +11,16 @@ export default class OverlapSchedule extends React.Component {
       const timeslots = day.timeslots.map((timeslot) => {
         return { name : timeslot.time, users : timeslot.users };
       });
-      return <OverlapDay key={index} name={day.name} timeslots={timeslots} totalUsers={totalUsers.length} />
+      return <OverlapDay key={index} name={day.name} timeslots={timeslots} totalUsers={totalUsers} />
     });
   }
   render() {
     return (
-      <div className='schedule overlap'>
-        {this.calculateSchedule()}
+      <div className='overlap-cont'>
+        <UserList users={this.props.users}/>
+        <div className='schedule overlap'>
+          {this.calculateSchedule()}
+        </div>
       </div>
     );
   }

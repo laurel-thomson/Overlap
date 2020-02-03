@@ -11,7 +11,9 @@
 }
 
 .day .header-line {
-  color: var(--blue);
+  border-color: var(--darkgray);
+  border-width: 1.5px;
+  border-style: solid;
 }
 
 .day .timeslot {
@@ -92,15 +94,15 @@
   margin-right: 15px;
 }
 
-.day .tooltip-user:nth-child(3n + 1) .icon {
+.day .tooltip-user .icon.red {
   background-color: var(--red);
 }
 
-.day .tooltip-user:nth-child(3n + 2) .icon {
+.day .tooltip-user .icon.blue  {
   background-color: var(--blue);
 }
 
-.day .tooltip-user:nth-child(3n + 0) .icon {
+.day .tooltip-user .icon.darkgray  {
   background-color: var(--darkgray);
 }
 
@@ -129,6 +131,7 @@
     right: -20px;
     top: calc(100% - 15px);
     min-width: 120px;
+    width: auto;
     min-height: 70px;
   }
 }
