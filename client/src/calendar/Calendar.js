@@ -33,7 +33,7 @@ export default class Calendar extends React.Component {
 
   addNewUser = (user) => {
     const axios = require('axios').default;
-    axios.put(`http://localhost:8080/${this.props.accessCode}/addUser`, {user: user})
+    axios.put(`/${this.props.accessCode}/addUser`, {user: user})
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
   }
@@ -81,7 +81,7 @@ export default class Calendar extends React.Component {
 
   componentDidMount() {
     const axios = require('axios').default;
-    axios.get(`http://localhost:8080/${this.props.accessCode}/users`)
+    axios.get(`/schedules/${this.props.accessCode}/users`)
       .then(
         (result) => {
           const users = [];

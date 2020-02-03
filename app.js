@@ -29,7 +29,7 @@ const config = {
 firebase.initializeApp(config);
 
 //get all users
-app.get('/:accessCode/users', function(req, res) {
+app.get('/schedules/:accessCode/users', function(req, res) {
   const usersRef = firebase.database().ref(`/schedules/${req.params.accessCode}/users`);
   usersRef.once('value')
     .then(
@@ -39,7 +39,7 @@ app.get('/:accessCode/users', function(req, res) {
 });
 
 //get a schedule
-app.get('/:accessCode', function (req, res) {
+app.get('/schedules/:accessCode', function (req, res) {
 	const scheduleRef = firebase.database().ref(`/schedules/${req.params.accessCode}`);
 
 	scheduleRef.once('value')
@@ -47,6 +47,10 @@ app.get('/:accessCode', function (req, res) {
       (result) => res.json(result.val()),
       (error) => res.send(`The read failed: ${error.code}`)
     );
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 //Create a schedule

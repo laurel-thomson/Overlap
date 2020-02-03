@@ -7,7 +7,7 @@ export default class SelectSchedule extends React.Component {
   saveSelection = (dayIndex, timeIndex, selected) => {
     const axios = require('axios').default;
 
-    axios.put(`http://localhost:8080/${this.props.accessCode}/updateSchedule`, {
+    axios.put(`/${this.props.accessCode}/updateSchedule`, {
       user : this.props.currentUser,
       dayIndex : dayIndex,
       timeIndex : timeIndex,

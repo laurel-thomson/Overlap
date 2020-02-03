@@ -49,7 +49,7 @@ class CreateSchedule extends React.Component {
       schedule.push(newDay);
     });
     const axios = require('axios').default;
-    axios.post('http://localhost:8080/', {
+    axios.post('/', {
       scheduleName : name,
       accessCode : accessCode,
       schedule : schedule
