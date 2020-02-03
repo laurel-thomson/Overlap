@@ -98,9 +98,8 @@ app.put('/:accessCode/updateSchedule', function(req, res) {
   }
 });
 
-
-var server = app.listen(8080, function () {
+const PORT = process.env.PORT || 8080;
+var server = app.listen(PORT, function () {
    const host = server.address().address;
-   const port = server.address().port;
    console.log('Example app listening at http://%s:%s', host, port);
 });
