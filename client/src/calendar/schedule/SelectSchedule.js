@@ -4,6 +4,14 @@ import './Schedule.css';
 
 export default class SelectSchedule extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      mouseDown: false,
+      mouseOverAction: undefined
+    };
+  }
+
   saveSelection = (dayIndex, timeIndex, selected) => {
     const axios = require('axios').default;
 
@@ -25,9 +33,40 @@ export default class SelectSchedule extends React.Component {
       .catch((error) => console.error(error));
   }
 
+  isDesktop = () => {
+    return window.innerWidth >= 1024;
+  }
+
+  onMouseDown = (selected, name, toggleSlot) => {
+    if (!this.isDesktop) { return; }
+    this.setState({
+      mouseDown: true
+    });
+    console.log("mouse down, selected = " + selected);
+    this.setState({
+      mouseOverAction : selected ? 'turnOff' : 'turnOn'
+    });
+    toggleSlot(name);
+  }
+
+  onMouseUp = () => {
+    if (!this.isDesktop) { return; }
+    this.setState({
+      mouseDown: false
+    });
+    console.log("mouse up");
+  }
+
+  onMouseOver = (name, onSlotMouseOver) => {
+    if (!this.isDesktop) { return; }
+    if (!this.state.mouseDown) { return; }
+    console.log("mouse over");
+    onSlotMouseOver(name, this.state.mouseOverAction);
+  }
+
   render() {
     return (
-      <div className='schedule mine'>
+      <div className='schedule mine' onMouseUp={this.onMouseUp}>
         {this.props.schedule.map((day, index) => {
           return <SelectableDay
             key={index}
@@ -36,7 +75,9 @@ export default class SelectSchedule extends React.Component {
             timeslots={day.timeslots}
             currentUser={this.props.currentUser}
             accessCode={this.props.accessCode}
-            saveSelection={this.saveSelection}/>
+            saveSelection={this.saveSelection}
+            onMouseDown={this.onMouseDown}
+            onMouseOver={this.onMouseOver} />
         })}
       </div>
     );

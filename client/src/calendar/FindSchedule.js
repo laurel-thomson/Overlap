@@ -25,7 +25,6 @@ export default class FindSchedule extends React.Component {
 
   componentDidMount() {
     const axios = require('axios').default;
-    debugger
     axios.get(`/schedules/${this.state.accessCode}`)
       .then(
         (result) => {

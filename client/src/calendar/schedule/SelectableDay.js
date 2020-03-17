@@ -33,6 +33,14 @@ export default class SelectableDay extends React.Component {
     });
   }
 
+  onSlotMouseOver = (name, mouseOverAction) => {
+    const slot = this.state.slots.find((s) => s.name === name);
+    if (slot.selected && mouseOverAction === 'turnOn') { return; }
+    if (!slot.selected && mouseOverAction === 'turnOff') { return; }
+
+    this.toggleSlot(name);
+  }
+
   render() {
     return (
       <div className='day selectable'>
@@ -44,7 +52,9 @@ export default class SelectableDay extends React.Component {
               key={index}
               name={slot.name}
               selected={slot.selected}
-              handleClick={() => this.toggleSlot(slot.name)}/>
+              handleClick={() => this.toggleSlot(slot.name)}
+              onMouseDown={() => this.props.onMouseDown(slot.selected, slot.name, this.toggleSlot)}
+              onMouseOver={() => this.props.onMouseOver(slot.name, this.onSlotMouseOver)}/>
           )}
         </div>
       </div>
