@@ -52,7 +52,6 @@ export default class SelectableDay extends React.Component {
               key={index}
               name={slot.name}
               selected={slot.selected}
-              handleClick={() => this.toggleSlot(slot.name)}
               onMouseDown={() => this.props.onMouseDown(slot.selected, slot.name, this.toggleSlot)}
               onMouseOver={() => this.props.onMouseOver(slot.name, this.onSlotMouseOver)}/>
           )}

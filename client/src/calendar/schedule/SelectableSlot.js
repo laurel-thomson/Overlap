@@ -11,7 +11,6 @@ export default class SelectableSlot extends React.Component {
         <p>{this.props.name}</p>
         <button 
           className={this.props.selected ? 'selected' : 'unselected'} 
-          onClick={this.props.handleClick} 
           onMouseOver={this.props.onMouseOver}
           onMouseDown={this.props.onMouseDown}>
             <FontAwesomeIcon icon={this.getButtonIcon()} className='buttonIcon' color='white'/>

@@ -33,12 +33,7 @@ export default class SelectSchedule extends React.Component {
       .catch((error) => console.error(error));
   }
 
-  isDesktop = () => {
-    return window.innerWidth >= 1024;
-  }
-
   onMouseDown = (selected, name, toggleSlot) => {
-    if (!this.isDesktop) { return; }
     this.setState({
       mouseDown: true
     });
@@ -50,7 +45,6 @@ export default class SelectSchedule extends React.Component {
   }
 
   onMouseUp = () => {
-    if (!this.isDesktop) { return; }
     this.setState({
       mouseDown: false
     });
@@ -58,7 +52,6 @@ export default class SelectSchedule extends React.Component {
   }
 
   onMouseOver = (name, onSlotMouseOver) => {
-    if (!this.isDesktop) { return; }
     if (!this.state.mouseDown) { return; }
     console.log("mouse over");
     onSlotMouseOver(name, this.state.mouseOverAction);
